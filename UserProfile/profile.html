@@ -65,18 +65,13 @@
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <div class="container mx-auto px-4 py-10 max-w-6xl">
     <!-- العنوان وزر تسجيل الخروج -->
     <div class="flex justify-between items-center mb-10">
       <h1 class="text-3xl font-bold text-primary">إعدادات الحساب</h1>
-      <button class="text-primary font-medium hover:underline flex items-center">
-        <span class="ml-1">تسجيل الخروج</span>
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-      </button>
     </div>
 
     <div class="flex flex-col lg:flex-row gap-8">
@@ -142,25 +137,20 @@
               <label class="block mb-2 font-medium">اسم العائلة</label>
               <input type="text" id="lastName" class="input-field" value="saadi" />
             </div>
-            <div>
+            <!-- <div>
               <label class="block mb-2 font-medium">الجنس</label>
               <select id="gender" class="input-field appearance-none">
                 <option>اختر الجنس</option>
                 <option>ذكر</option>
                 <option>أنثى</option>
               </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">تاريخ الميلاد</label>
-              <input type="date" id="birthDate" class="input-field" />
-            </div>
+            </div> -->
             <div>
               <label class="block mb-2 font-medium">
-                رقم الجوال <span class="text-gray-400 text-sm">(غير مؤكد)</span>
+                رقم الجوال <span class="text-gray-400 text-sm"></span>
               </label>
               <div class="flex gap-2">
                 <input type="text" id="phoneNumber" class="input-field w-2/3" placeholder="رقم الجوال" />
-                <input type="text" id="countryCode" class="input-field w-1/3" placeholder="مفتاح الدولة" />
               </div>
               <button class="mt-2 text-primary text-sm hover:underline">تعديل رقم الجوال</button>
             </div>
@@ -186,6 +176,6 @@
   </div>
 
   <!-- رابط ملف JavaScript -->
-  <!-- <script type="module" src="profile.js"></script> -->
+  <script type="module" src="profile.js"></script>
 </body>
 </html>
