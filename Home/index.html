@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saudi Tourism Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#3674B5',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+         @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .category-icon {
+            transition: all 0.3s ease;
+        }
+        .category-icon:hover {
+            transform: translateY(-5px);
+        }
+        .active-category {
+            color: #3674B5;
+            border-color: #3674B5;
+        }
+                @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @font-face {
+            font-family: 'TheSansArabic';
+            src: url('path-to-font/TheSansArabic-Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #ffffff;
+            color: #fff;
+        }
+
+        .arabic-title {
+            font-family: 'TheSansArabic', 'Tajawal', sans-serif;
+        }
+
+        .video-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 80px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSIxMDAiIHZpZXdCb3g9IjAgMCA4MCAxMDAiPjxwYXRoIGZpbGw9IiMzNjc0QjUiIGQ9Ik0wLDAgTDgwLDAgTDgwLDEwMCBMMCwxMDAgWiIvPjwvc3ZnPg==');
+            background-repeat: repeat-y;
+            z-index: 10;
+        }
+
+        .explore-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background-color: rgba(54, 116, 181, 0.3);
+            border-color: #3674B5;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-black bg-opacity-80">
+        <!-- Logo -->
+        <a href="#" class="relative z-10">
+            <img src="/api/placeholder/120/40" alt="Saudi Logo" class="h-10">
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center justify-center space-x-8">
+            <a href="#" class="text-white hover:text-custom-blue transition">الوجهات</a>
+            <a href="#" class="text-white hover:text-custom-blue transition">أنشطة سياحية</a>
+            <a href="#" class="text-white hover:text-custom-blue transition">أساسيات السفر</a>
+            <a href="#" class="text-white hover:text-custom-blue transition">تقويم الفعاليات</a>
+            <a href="#" class="text-white hover:text-custom-blue transition">الخريطة التفاعلية</a>
+        </div>
+
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-4">
+            <button class="p-2 rounded-full bg-transparent hover:bg-custom-blue transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+            <button class="p-2 rounded-full bg-transparent hover:bg-custom-blue transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+            </button>
+            <div
+                class="flex items-center border border-white rounded-full px-3 py-1 hover:border-custom-blue hover:text-custom-blue transition">
+                <span>AR</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9h18" />
+                </svg>
+            </div>
+            <a href="#"
+                class="px-4 py-2 rounded-lg border border-white hover:border-custom-blue hover:text-custom-blue transition">طلب
+                التأشيرة</a>
+            <a href="#" class="px-4 py-2 bg-custom-blue rounded-lg hover:bg-opacity-80 transition">تسجيل الدخول</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+<div class="video-container">
+    <!-- Image Background (replacing video) -->
+    <img src="https://plus.unsplash.com/premium_photo-1676232732108-27c7ff6dc5cd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Ramadan Celebration" class="absolute inset-0 w-full h-full object-cover">
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+    <!-- Pattern Overlay on Right Side -->
+    <div class="pattern-overlay"></div>
+
+    <!-- Left Side Navigation -->
+    <div
+        class="absolute left-0 top-0 bottom-0 flex flex-col justify-center items-center w-16 bg-black bg-opacity-70 z-20">
+        <div class="transform -rotate-90 whitespace-nowrap text-lg mb-32 hover:text-custom-blue cursor-pointer">
+            شاركنا</div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
+        <h1 class="arabic-title text-6xl md:text-8xl font-bold mb-6 text-white">ليالي رمضان</h1>
+        <p class="text-xl md:text-2xl max-w-3xl mb-10 text-white">عيش تجربة ساحرة في رمضان السعودية: شوارع مزينة
+            بالأنوار، واكتشاف طعام عطرية، وشعور بالألفة</p>
+        <button
+            class="explore-btn px-8 py-3 rounded-lg text-white border border-white hover:border-custom-blue transition">
+            احجز الآن
+        </button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div
+        class="absolute bottom-0 left-0 right-0 flex justify-between items-center p-6 bg-gradient-to-t from-black to-transparent z-20">
+        <div class="text-lg hover:text-custom-blue cursor-pointer">ليالي رمضان</div>
+        <div class="text-lg hover:text-custom-blue cursor-pointer">غير إحساسك</div>
+        <div class="text-lg hover:text-custom-blue cursor-pointer">شغلنا حكاية</div>
+    </div>
+</div>
+
+    <!-- Main Container -->
+    <div class="relative overflow-hidden py-16 bg-white">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#3674B5]/10 to-transparent"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-[#3674B5]/5 rounded-full blur-3xl"></div>
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-[#3674B5]/5 rounded-full blur-3xl"></div>
+    
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header Section -->
+            <div class="flex justify-between items-end mb-12">
+                <div class="relative">
+                    <h2 class="text-4xl font-bold text-[#000]">فعاليات الشهر الحالي</h2>
+                    <div class="absolute -bottom-4 right-0 w-32 h-1 bg-[#3674B5] rounded-full"></div>
+                </div>
+                <a href="#" class="text-[#3674B5] hover:text-[#000] transition-colors duration-300 text-sm font-semibold">
+                    عرض الكل
+                </a>
+            </div>
+    
+            <!-- Events Slider -->
+            <div class="relative">
+                <!-- Events Container -->
+                <div class="overflow-x-auto scrollbar-hide pb-8">
+                    <div class="flex gap-6 min-w-max">
+                        <!-- Event Card 1 -->
+                        <div class="w-[300px] group">
+                            <div
+                                class="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:shadow-[#3674B5]/20 hover:-translate-y-2">
+                                <img src="https://images.unsplash.com/photo-1542931287-023b922fa89b" alt="مهرجان رحلة"
+                                    class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                <!-- Date Badge -->
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-2 text-center">
+                                    <div class="text-[#3674B5] text-2xl font-bold">10</div>
+                                    <div class="text-[#000] text-sm">مارس</div>
+                                </div>
+                                <!-- Content -->
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <div class="flex items-center gap-2 text-white/80 text-sm mb-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        <span>المدينة المنورة</span>
+                                    </div>
+                                    <h3 class="text-white text-xl font-bold mb-2">مهرجان رحلة</h3>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-white/90 text-sm">10 مارس - 10 أبريل</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Event Card 2 -->
+                        <div class="w-[300px] group">
+                            <div
+                                class="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:shadow-[#3674B5]/20 hover:-translate-y-2">
+                                <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d" alt="بسطات البلد"
+                                    class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                <!-- Date Badge -->
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-2 text-center">
+                                    <div class="text-[#3674B5] text-2xl font-bold">01</div>
+                                    <div class="text-[#000] text-sm">مارس</div>
+                                </div>
+                                <!-- Content -->
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <div class="flex items-center gap-2 text-white/80 text-sm mb-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        <span>جدة</span>
+                                    </div>
+                                    <h3 class="text-white text-xl font-bold mb-2">بسطات البلد</h3>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-white/90 text-sm">01 مارس - 31 مارس</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Event Card 3 -->
+                        <div class="w-[300px] group">
+                            <div
+                                class="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:shadow-[#3674B5]/20 hover:-translate-y-2">
+                                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="المركاز"
+                                    class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                <!-- Date Badge -->
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-2 text-center">
+                                    <div class="text-[#3674B5] text-2xl font-bold">01</div>
+                                    <div class="text-[#000] text-sm">مارس</div>
+                                </div>
+                                <!-- Content -->
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <div class="flex items-center gap-2 text-white/80 text-sm mb-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        <span>جدة</span>
+                                    </div>
+                                    <h3 class="text-white text-xl font-bold mb-2">المركاز</h3>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-white/90 text-sm">01 مارس - 31 مارس</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="w-[300px] group">
+                            <div
+                                class="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:shadow-[#3674B5]/20 hover:-translate-y-2">
+                                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="المركاز"
+                                    class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                <!-- Date Badge -->
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-2 text-center">
+                                    <div class="text-[#3674B5] text-2xl font-bold">01</div>
+                                    <div class="text-[#000] text-sm">مارس</div>
+                                </div>
+                                <!-- Content -->
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <div class="flex items-center gap-2 text-white/80 text-sm mb-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        <span>جدة</span>
+                                    </div>
+                                    <h3 class="text-white text-xl font-bold mb-2">المركاز</h3>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-white/90 text-sm">01 مارس - 31 مارس</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Event Card 4 -->
+                        <!-- <div class="w-[300px] group">
+                            <div
+                                class="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:shadow-[#3674B5]/20 hover:-translate-y-2">
+                                <img src="https://images.unsplash.com/photo-1582037928769-351265c7ded9"
+                                    alt="منطقة البيوت التاريخية"
+                                    class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                               
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-2 text-center">
+                                    <div class="text-[#3674B5] text-2xl font-bold">01</div>
+                                    <div class="text-[#000] text-sm">مارس</div>
+                                </div>
+                               
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <div class="flex items-center gap-2 text-white/80 text-sm mb-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        <span>جدة</span>
+                                    </div>
+                                    <h3 class="text-white text-xl font-bold mb-2">منطقة البيوت التاريخية</h3>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-white/90 text-sm">01 مارس - 31 مارس</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+    
+                <!-- Navigation Dots -->
+                <!-- <div class="flex justify-center gap-2 mt-8">
+                    <button class="w-3 h-3 rounded-full bg-[#3674B5] opacity-100"></button>
+                    <button
+                        class="w-3 h-3 rounded-full bg-[#3674B5]/30 hover:bg-[#3674B5]/50 transition-all duration-300"></button>
+                    <button
+                        class="w-3 h-3 rounded-full bg-[#3674B5]/30 hover:bg-[#3674B5]/50 transition-all duration-300"></button>
+                    <button
+                        class="w-3 h-3 rounded-full bg-[#3674B5]/30 hover:bg-[#3674B5]/50 transition-all duration-300"></button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+<div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 bg-white">
+    <!-- Header -->
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-[#000] inline-block relative">
+            أبرز الأنشطة
+            <div
+                class="absolute bottom-0 left-0 w-full h-1 bg-[#3674B5] rounded-full transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100">
+            </div>
+        </h2>
+    </div>
+
+    <!-- Categories -->
+    <div class="flex flex-wrap justify-center gap-8 mb-12">
+        <!-- All -->
+        <button class="category-icon group flex flex-col items-center space-y-3 active-category"
+            onclick="filterCategory('all')">
+            <div
+                class="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 border-2 border-[#3674B5]">
+                <svg class="w-10 h-10 text-[#3674B5]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <span class="text-[#000] font-medium">الكل</span>
+        </button>
+
+        <!-- Food & Drinks -->
+        <button class="category-icon group flex flex-col items-center space-y-3" onclick="filterCategory('food')">
+            <div
+                class="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#3674B5]">
+                <svg class="w-10 h-10 text-[#000] group-hover:text-[#3674B5] transition-colors duration-300"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4M12 16h.01" />
+                </svg>
+            </div>
+            <span class="text-[#000] font-medium">المأكولات والمشروبات</span>
+        </button>
+
+        <!-- Shopping -->
+        <button class="category-icon group flex flex-col items-center space-y-3" onclick="filterCategory('shopping')">
+            <div
+                class="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#3674B5]">
+                <svg class="w-10 h-10 text-[#000] group-hover:text-[#3674B5] transition-colors duration-300"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+            </div>
+            <span class="text-[#000] font-medium">التسوق</span>
+        </button>
+
+        <!-- Culture & History -->
+        <button class="category-icon group flex flex-col items-center space-y-3" onclick="filterCategory('culture')">
+            <div
+                class="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#3674B5]">
+                <svg class="w-10 h-10 text-[#000] group-hover:text-[#3674B5] transition-colors duration-300"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+            </div>
+            <span class="text-[#000] font-medium">الثقافة والتاريخ</span>
+        </button>
+
+        <!-- Nature -->
+        <button class="category-icon group flex flex-col items-center space-y-3" onclick="filterCategory('nature')">
+            <div
+                class="w-20 h-20 rounded-2xl bg-white shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-[#3674B5]">
+                <svg class="w-10 h-10 text-[#000] group-hover:text-[#3674B5] transition-colors duration-300"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+            </div>
+            <span class="text-[#000] font-medium">طبيعة</span>
+        </button>
+    </div>
+
+    <!-- Activities Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="activitiesGrid">
+        <!-- Activity cards will be dynamically populated here -->
+    </div>
+</div>
+
+<section class="container mx-auto px-6 py-10 text-black">
+    <!-- Title -->
+    <div class="flex justify-between items-center">
+        <h2 class="text-4xl font-bold">تعرف على الوجهات</h2>
+        <a href="#" class="text-[#3674B5] font-bold hover:underline">اكتشف أكثر</a>
+    </div>
+
+    <!-- Main Grid: Cards (Left) | Map (Right) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+
+        <!-- Destination Cards (Left) -->
+        <div class="space-y-6 col-span-1">
+            <!-- Card 1 -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="destination1.jpg" alt="حائل" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg">حائل</h3>
+                    <p class="text-gray-600 text-sm">مواقع طبيعية، أماكن تراثية...</p>
+                    <span class="text-gray-500 text-sm">26.2°C ☁️</span>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="destination2.jpg" alt="الأحساء" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg">الأحساء</h3>
+                    <p class="text-gray-600 text-sm">أماكن تراثية وتاريخية...</p>
+                    <span class="text-gray-500 text-sm">24.9°C ☀️</span>
+                </div>
+            </div>
+           
+        </div>
+
+        <!-- Map Section (Right) -->
+        <!-- Map Section (Right) -->
+        <div class="relative col-span-2 h-[450px]">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d216424.17828899814!2d35.96887119561331!3d32.05226493053134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b658f76dbb883%3A0x6dbb13eec3c7a1f1!2sZarqa!5e0!3m2!1sen!2sjo!4v1742209213506!5m2!1sen!2sjo"
+                class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<script>
+            const activities = [
+                    {
+                        id: 1,
+                        name: "مهرجان الطعام",
+                        category: "food",
+                        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1",
+                        location: "جدة"
+                    },
+                    {
+                        id: 2,
+                        name: "سوق التراث",
+                        category: "shopping",
+                        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1",
+                        location: "الرياض"
+                    },
+                    // Add more activities as needed
+                ];
+
+                function filterCategory(category) {
+                    // Update active category styling
+                    document.querySelectorAll('.category-icon').forEach(icon => {
+                        icon.classList.remove('active-category');
+                    });
+                    event.currentTarget.classList.add('active-category');
+
+                    // Filter and display activities
+                    const filteredActivities = category === 'all'
+                        ? activities
+                        : activities.filter(activity => activity.category === category);
+
+                    displayActivities(filteredActivities);
+                }
+
+                function displayActivities(activitiesToShow) {
+                    const grid = document.getElementById('activitiesGrid');
+                    grid.innerHTML = activitiesToShow.map(activity => `
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div class="relative overflow-hidden">
+                        <img src="${activity.image}" alt="${activity.name}" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 class="text-xl font-bold">${activity.name}</h3>
+                            <p class="text-sm opacity-90">${activity.location}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+                }
+
+                // Initial display
+                displayActivities(activities);
+</script>
+    
+</body>
+
+</html>

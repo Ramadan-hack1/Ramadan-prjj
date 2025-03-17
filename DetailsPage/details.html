@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حملات رمضانية</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            /* خط عربي شائع */
+        }
+
+        .header-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        }
+
+        .star-rating {
+            color: #fbbf24;
+            /* لون النجوم */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <!-- Optional: Add Google Fonts for Arabic support -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Header Section -->
+    <header class="relative">
+        <img src="https://zwad.org/wp-content/uploads/2024/11/%D8%A5%D9%81%D8%B7%D8%A7%D8%B1-%D8%B5%D8%A7%D8%A6%D9%85.png"
+            alt="حملة رمضانية" class="w-full h-96 object-cover">
+        <div class="absolute inset-0 header-overlay flex items-center justify-end p-6">
+            <h1 class="text-white text-5xl font-bold drop-shadow-lg">حملات رمضانية</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Intro Section -->
+        <section class="flex flex-col md:flex-row gap-8 mb-12">
+            <div class="md:w-1/3">
+                <div class="bg-green-100 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-bold mb-4 text-green-800">حملة إفطار صائم</h2>
+                    <p class="text-gray-700 mb-2">الموقع: عمان</p>
+                    <p class="text-gray-700 mb-4">التكلفة: 10 دينار</p>
+                    <button class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">ساهم
+                        الآن</button>
+                </div>
+                <div class="mt-6">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27049.70404247917!2d36.123687289160145!3d32.06348710000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b65624148cfa1%3A0x5e7142bec60b08cc!2zUGl6emEgT25lINmF2LfYudmFINio2YrYqtiy2Kcg2YjZhg!5e0!3m2!1sar!2sjo!4v1742207611700!5m2!1sar!2sjo"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" class="rounded-lg shadow-md">
+                    </iframe>
+                </div>
+            </div>
+            <div class="md:w-2/3">
+                <img src="https://i0.wp.com/www.mshireb.com/wp-content/uploads/2025/01/mshireb-1737382588.jpg?fit=2048%2C1466&ssl=1"
+                    alt="حملة رمضانية" class="w-full rounded-lg mb-6 shadow-md">
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    شهر رمضان هو شهر العطاء والتضامن الاجتماعي، حيث تنتشر الحملات الرمضانية في جميع أنحاء العالم
+                    الإسلامي لتلبية احتياجات المحتاجين وتعزيز روح التكافل بين أفراد المجتمع. هذه الحملات ليست مجرد
+                    مبادرات خيرية عابرة، بل هي جزء أساسي من قيم الإسلام التي تحث على المساعدة والإحسان، خاصة في هذا
+                    الشهر المبارك.
+                </p>
+            </div>
+        </section>
+
+        <!-- Rating and Reviews Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">التقييمات والمراجعات</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <!-- التقييم العام -->
+                <div class="text-center mb-4">
+                    <p class="text-xl font-bold text-gray-800 mb-2">التقييم العام</p>
+                    <div class="star-rating text-3xl">
+                        ★★★★☆ <!-- 4 out of 5 stars -->
+                    </div>
+                    <p class="text-gray-600 text-sm">4.0 / 5.0 بناءً على 120 تقييمًا</p>
+                </div>
+
+                <!-- مراجعات المستخدمين -->
+                <div id="reviewsList" class="space-y-4">
+                    <!-- مراجعة 1 -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <div class="star-rating text-lg">
+                                ★★★★★ <!-- 5 stars -->
+                            </div>
+                            <p class="text-gray-600 ml-2">5.0</p>
+                        </div>
+                        <p class="text-gray-700 text-sm">"حملة رائعة! ساهمت في إسعاد العديد من الأسر المحتاجة. شكرًا لكم
+                            على جهودكم."</p>
+                        <p class="text-gray-500 text-xs">- أحمد محمد</p>
+                    </div>
+
+                    <!-- مراجعة 2 -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <div class="star-rating text-lg">
+                                ★★★★☆ <!-- 4 stars -->
+                            </div>
+                            <p class="text-gray-600 ml-2">4.0</p>
+                        </div>
+                        <p class="text-gray-700 text-sm">"تجربة ممتازة، ولكن يمكن تحسين تنظيم توزيع السلال الغذائية."
+                        </p>
+                        <p class="text-gray-500 text-xs">- سارة خالد</p>
+                    </div>
+
+                    <!-- مراجعة 3 -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <div class="star-rating text-lg">
+                                ★★★☆☆ <!-- 3 stars -->
+                            </div>
+                            <p class="text-gray-600 ml-2">3.0</p>
+                        </div>
+                        <p class="text-gray-700 text-sm">"حملة جيدة، ولكن هناك حاجة لمزيد من الشفافية في التوزيع."</p>
+                        <p class="text-gray-500 text-xs">- محمد علي</p>
+                    </div>
+                </div>
+
+                <!-- زر إضافة تقييم -->
+                <div class="text-center mt-6">
+                    <button id="addReviewBtn"
+                        class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700 transition">
+                        أضف تقييمك
+                    </button>
+                </div>
+
+                <!-- فورم التقييم (مخفي في البداية) -->
+                <div id="reviewForm" class="hidden mt-6">
+                    <form id="reviewFormElement" class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold mb-4 text-gray-800">أضف تقييمك</h3>
+                        <div class="mb-4">
+                            <label for="rating" class="block text-gray-700 mb-2">التقييم:</label>
+                            <select id="rating" class="w-full p-2 border rounded-lg">
+                                <option value="5">★★★★★ (5)</option>
+                                <option value="4">★★★★☆ (4)</option>
+                                <option value="3">★★★☆☆ (3)</option>
+                                <option value="2">★★☆☆☆ (2)</option>
+                                <option value="1">★☆☆☆☆ (1)</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="comment" class="block text-gray-700 mb-2">التعليق:</label>
+                            <textarea id="comment" rows="4" class="w-full p-2 border rounded-lg"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 mb-2">الاسم:</label>
+                            <input type="text" id="name" class="w-full p-2 border rounded-lg">
+                        </div>
+                        <button type="submit"
+                            class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                            إرسال التقييم
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Contribute Section -->
+        <section>
+            <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">كيف تساهم في الحملات؟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <img src="https://zwad.org/wp-content/uploads/2024/11/%D8%A5%D9%81%D8%B7%D8%A7%D8%B1-%D8%B5%D8%A7%D8%A6%D9%85.png"
+                        alt="تبرع" class="w-full rounded-lg mb-4 shadow-md">
+                    <p class="text-gray-700 font-medium">التبرع المالي</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://zwad.org/wp-content/uploads/2024/11/%D8%A5%D9%81%D8%B7%D8%A7%D8%B1-%D8%B5%D8%A7%D8%A6%D9%85.png"
+                        alt="تطوع" class="w-full rounded-lg mb-4 shadow-md">
+                    <p class="text-gray-700 font-medium">التطوع</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://zwad.org/wp-content/uploads/2024/11/%D8%A5%D9%81%D8%B7%D8%A7%D8%B1-%D8%B5%D8%A7%D8%A6%D9%85.png"
+                        alt="دعم" class="w-full rounded-lg mb-4 shadow-md">
+                    <p class="text-gray-700 font-medium">نشر الوعي</p>
+                </div>
+            </div>
+            <p class="text-gray-700 text-lg text-center leading-relaxed mt-6 mx-auto max-w-4xl">
+                يمكنك المساهمة في الحملات الرمضانية من خلال التبرع المالي، التطوع في تنظيم الفعاليات، أو نشر الوعي عن
+                أهمية هذه الحملات. كل مساهمة تساعد في إسعاد المحتاجين وإدخال الفرح إلى قلوبهم.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 حملات رمضانية. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript to Handle Form Submission -->
+    <script>
+        // عرض/إخفاء الفورم
+        document.getElementById('addReviewBtn').addEventListener('click', function () {
+            const form = document.getElementById('reviewForm');
+            form.classList.toggle('hidden');
+        });
+
+        // إضافة التقييم الجديد
+        document.getElementById('reviewFormElement').addEventListener('submit', function (event) {
+            event.preventDefault(); // منع إعادة تحميل الصفحة
+
+            // الحصول على القيم من الفورم
+            const rating = document.getElementById('rating').value;
+            const comment = document.getElementById('comment').value;
+            const name = document.getElementById('name').value;
+
+            // إنشاء عنصر جديد للتقييم
+            const newReview = document.createElement('div');
+            newReview.classList.add('bg-gray-50', 'p-4', 'rounded-lg');
+            newReview.innerHTML = `
+                <div class="flex items-center mb-2">
+                    <div class="star-rating text-lg">
+                        ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}
+                    </div>
+                    <p class="text-gray-600 ml-2">${rating}.0</p>
+                </div>
+                <p class="text-gray-700 text-sm">"${comment}"</p>
+                <p class="text-gray-500 text-xs">- ${name}</p>
+            `;
+
+            // إضافة التقييم الجديد إلى القائمة
+            document.getElementById('reviewsList').appendChild(newReview);
+
+            // إخفاء الفورم بعد الإرسال
+            document.getElementById('reviewForm').classList.add('hidden');
+
+            // إعادة تعيين الفورم
+            document.getElementById('reviewFormElement').reset();
+        });
+    </script>
+</body>
+
+</html>
