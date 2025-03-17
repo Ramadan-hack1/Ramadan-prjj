@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الدفع - Front-End Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-5">
+    <div class="payment-container bg-white rounded-lg shadow-lg w-full max-w-lg p-8 text-center">
+        <div class="relative">
+            <img class="header-image w-full h-36 object-cover rounded-lg mb-6" src="https://img.youm7.com/ArticleImgs/2025/2/28/45956-%D9%87%D9%84%D8%A7%D9%84-%D8%B1%D9%85%D8%B6%D8%A7%D9%86.jpg" alt="Header Image">
+            <img class="profile-image w-20 h-20 rounded-full object-cover border-4 border-white mt-6 absolute bottom-0 left-1/2 transform -translate-x-1/2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlmLuzJ05bGU4djSaVxnRSE3ejJYA_mhbeaQ&s" alt="Profile Image">
+        </div>
+        <div class="payment-options flex gap-4 mb-6 justify-center">
+            <p class="font-bold">الدفع من خلال البطاقة</p>
+        </div>
+        
+        <div class="payment-form" id="card-form">
+            <div class="form-group mb-4 text-left">
+                <label class="block text-gray-600 font-medium mb-2">الاسم على البطاقة <span class="text-red-500">*</span></label>
+                <input type="text" id="name-on-card" class="w-full p-3 border border-gray-300 rounded-md text-lg focus:outline-none focus:border-gray-500" placeholder="John Doe">
+            </div>
+
+            <div class="form-group mb-4 text-left">
+                <label class="block text-gray-600 font-medium mb-2">رقم البطاقة <span class="text-red-500">*</span></label>
+                <input type="text" id="card-number" class="w-full p-3 border border-gray-300 rounded-md text-lg focus:outline-none focus:border-gray-500" placeholder="1234 1234 1234 1234" maxlength="19">
+            </div>
+            
+            <div class="flex gap-4 mb-4">
+                <div class="flex-1">
+                    <div class="form-group mb-4 text-left">
+                        <label class="block text-gray-600 font-medium mb-2">تاريخ الانتهاء <span class="text-red-500">*</span></label>
+                        <input type="text" id="expiry-date" class="w-full p-3 border border-gray-300 rounded-md text-lg focus:outline-none focus:border-gray-500" placeholder="MM/YY">
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="form-group mb-4 text-left">
+                        <label class="block text-gray-600 font-medium mb-2">رمز الأمان <span class="text-red-500">*</span></label>
+                        <input type="text" id="cvc" class="w-full p-3 border border-gray-300 rounded-md text-lg focus:outline-none focus:border-gray-500" placeholder="CVC" maxlength="3">
+                    </div>
+                </div>
+            </div>
+            
+            <button id="submit-payment" class="w-full p-4 bg-blue-500 text-white rounded-md text-lg font-semibold hover:bg-blue-600 transition">إتمام الدفع</button>
+        </div>
+        
+        <div class="payment-form" id="paypal-form" style="display: none;">
+            <p class="text-center my-5">سيتم تحويلك إلى موقع PayPal لإتمام عملية الدفع.</p>
+            <button id="paypal-button" class="w-full p-4 bg-yellow-500 text-white rounded-md text-lg font-semibold hover:bg-yellow-600 transition">المتابعة إلى PayPal</button>
+        </div>
+        
+        <p class="text-gray-500 mt-6">المعاملات مؤمنة ومشفرة 🔒</p>
+    </div>
+    
+    <script>
+        ///////////////////رقم الcvc///////////////////////////
+        const cvcInput = document.getElementById('cvc');
+        const cvcError = cvcInput.nextElementSibling;
+
+        cvcInput.addEventListener('input', function () {
+            let value = this.value.replace(/\D/g, ''); // السماح بالأرقام فقط
+
+            // تحديد الحد الأقصى بـ 3 أرقام فقط
+            if (value.length > 3) {
+                value = value.slice(0, 3);
+            }
+
+            this.value = value; // تحديث القيمة بعد التعديل
+
+            // التحقق من صحة الإدخال وعرض رسالة خطأ عند الحاجة
+            if (value.length < 3) {
+                cvcError.textContent = '❌ رمز الأمان يجب أن يكون 3 أرقام فقط.';
+            } else {
+                cvcError.textContent = ''; // إزالة رسالة الخطأ إذا كان الإدخال صحيحًا
+            }
+        });
+///////////////////////////////////////////////
+
+//////////////رقم البطاقه//////////////////////////
+const cardNumberInput = document.getElementById('card-number');
+    const errorMessage = cardNumberInput.nextElementSibling;
+
+    cardNumberInput.addEventListener('input', function () {
+        let value = this.value.replace(/\D/g, ''); // إزالة أي أحرف غير الأرقام
+
+        // تحديد الحد الأقصى بـ 16 رقمًا فقط
+        if (value.length > 16) {
+            value = value.slice(0, 16);
+        }
+
+        // تنسيق الإدخال ليكون على شكل XXXX XXXX XXXX XXXX
+        this.value = value.replace(/(\d{4})/g, '$1 ').trim();
+
+        // التحقق من صحة الإدخال وعرض رسالة خطأ عند الحاجة
+        if (value.length < 16) {
+            errorMessage.textContent = '❌ رقم البطاقة يجب أن يكون 16 رقمًا بالضبط.';
+        } else {
+            errorMessage.textContent = ''; // إزالة رسالة الخطأ إذا كان الإدخال صحيحًا
+        }
+    });
+/////////////////////////////////////////////////////////////////
+
+        // التحقق من رقم البطاقة (يقبل فقط أرقام بطول 13-19)
+        const cardNumberRegex = /^\d{16}$/;
+
+
+        // التحقق من تاريخ الانتهاء (MM/YY)
+        const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+
+        // التحقق من رمز الأمان (CVC) (3 أو 4 أرقام)
+        const cvcRegex = /^\d{3,4}$/;
+
+        // التحقق من الاسم على البطاقة (يقبل الأحرف والمسافات فقط)
+        const nameOnCardRegex = /^[\p{L} ]+$/u;
+
+        // التحقق عند النقر على زر الدفع
+        document.getElementById('submit-payment').addEventListener('click', function () {
+            const cardNumber = document.getElementById('card-number').value.replace(/\s+/g, '');
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvc = document.getElementById('cvc').value;
+            const nameOnCard = document.getElementById('name-on-card').value.trim();
+
+            if (!cardNumberRegex.test(cardNumber)) {
+                alert('رقم البطاقة غير صالح..');
+                return;
+            }
+        
+
+            if (!expiryDateRegex.test(expiryDate)) {
+                alert('تاريخ الانتهاء غير صالح. يرجى إدخال التاريخ بصيغة MM/YY.');
+                return;
+            }
+
+            if (!cvcRegex.test(cvc)) {
+                alert('رمز الأمان (CVC) غير صالح. يجب أن يكون 3 أرقام.');
+                return;
+            }
+
+            if (!nameOnCardRegex.test(nameOnCard)) {
+                alert('الاسم على البطاقة غير صالح. يرجى إدخال اسم صحيح.');
+                return;
+            }
+
+            alert('تم إرسال معلومات الدفع بنجاح!');
+        });
+    </script>
+</body>
+</html>
