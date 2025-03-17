@@ -110,45 +110,42 @@
         <a href="#" class="relative z-10">
             <img src="/api/placeholder/120/40" alt="Saudi Logo" class="h-10">
         </a>
-
+    
         <!-- Navigation Links -->
         <div class="hidden md:flex items-center justify-center space-x-8">
-            <a href="#" class="text-white hover:text-custom-blue transition">الوجهات</a>
-            <a href="#" class="text-white hover:text-custom-blue transition">أنشطة سياحية</a>
-            <a href="#" class="text-white hover:text-custom-blue transition">أساسيات السفر</a>
-            <a href="#" class="text-white hover:text-custom-blue transition">تقويم الفعاليات</a>
-            <a href="#" class="text-white hover:text-custom-blue transition">الخريطة التفاعلية</a>
+            <a href="#" class="text-white hover:text-custom-blue transition">الرئيسية</a>
+            <a href="/Events/events.html" class="text-white hover:text-custom-blue transition">الخدمات</a>
+            <a href="/AboutUs/about.html" class="text-white hover:text-custom-blue transition">عن الموقع</a>
+            <a href="/ContactUs/contact.html" class="text-white hover:text-custom-blue transition">من نحن</a>
         </div>
-
+    
         <!-- Right Menu -->
         <div class="flex items-center space-x-4">
             <button class="p-2 rounded-full bg-transparent hover:bg-custom-blue transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
             </button>
             <button class="p-2 rounded-full bg-transparent hover:bg-custom-blue transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
             </button>
-            <div
-                class="flex items-center border border-white rounded-full px-3 py-1 hover:border-custom-blue hover:text-custom-blue transition">
+            <div class="flex items-center border border-white rounded-full px-3 py-1 hover:border-custom-blue hover:text-custom-blue transition">
                 <span>AR</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9h18" />
                 </svg>
             </div>
-            <a href="#"
-                class="px-4 py-2 rounded-lg border border-white hover:border-custom-blue hover:text-custom-blue transition">طلب
-                التأشيرة</a>
-            <a href="#" class="px-4 py-2 bg-custom-blue rounded-lg hover:bg-opacity-80 transition">تسجيل الدخول</a>
+            <a href="#" class="px-4 py-2 rounded-lg border border-white hover:border-custom-blue hover:text-custom-blue transition">طلب التأشيرة</a>
+            
+            <!-- عناصر تسجيل الدخول/ملف المستخدم -->
+            <div id="authButtons">
+                <a href="/Register/register.html" class="px-4 py-2 bg-custom-blue rounded-lg hover:bg-opacity-80 transition">تسجيل الدخول</a>
+            </div>
         </div>
     </nav>
 
@@ -522,6 +519,34 @@
 </section>
 
 <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+        const authButtons = document.getElementById("authButtons");
+
+        // تحقق من وجود بيانات المستخدم في localStorage
+        const user = localStorage.getItem("user");
+
+        if (user) {
+            // تحويل البيانات المخزنة إلى كائن JavaScript
+            const userData = JSON.parse(user);
+
+            // استبدال زر "تسجيل الدخول" بأيقونة الملف الشخصي وزر تسجيل الخروج
+            authButtons.innerHTML = `
+                <div class="flex items-center space-x-4">
+                    <a href="../UserProfile/profile.html" class="p-2 rounded-full bg-transparent hover:bg-custom-blue transition">
+                        <img src="${userData.profileImage || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAMAAABC4vDmAAAAMFBMVEXk5ueutLff4uOnrrHn6eqrsbTZ3N25vsHHy82zuLvr7e7c3+DV2NnQ09W8wcPMz9FRQ01gAAADeUlEQVR4nO2b23LjIAxAuYibMfj//3ZxkqZJmtggWyKzw3no9PGMEAJLRIjBYDAYDAaDwWAwGAwGg4EQACBUjFFd/vsGANScXbiS/Sy6awFYH7SRd4zWLqmuXmCdfDC6eRmZ+2kVJf1q9BOvTlog/N8o/WrJ1MEKbPistKIzv1PaNLoGKzI7LR+y6RnLuYTgt5fuHixGK0hVcbrEis1prlUqseJyEnVrd5Xi2oOuQUoaz5FWsLQ4lXrFUturk/yGo1eqrQa/mEQuZRuVVqjXrz1Qa6iorVozaoU4q1q33i1UxCezQzhR16qIcSpMlFIJs3qlgFKuH2SclFkI12/COZVjmVAKMAVhhbIoWGSkZFBkTi23uxfoMh1XOlcIyyfm4LtJ0d3V/zep+RulCCP1lYmOPPokZUkQ8xcWT9y9c4XymJmwUpQH8hRwTqRXT+z2I6wIAn1N0LTfWLgPh0x6RwePChTdIXORipj9F0idcPuPvkWFKOqaWEkgUp2hlwe2NatIz70bU1PLsywe5YfoHdWU6yaQ1qgfGlr7K0wDmqmho6BntkFItRVPF/3GzqzvHidOJ6GqtiBrnFYqVpDdaf8bsMsUGebNxDIu9pi3b43bjVw6GF2YbNbvtIz0PR9xgPLhOVzGyLD0fu8Cwi7ZaK2NWf+GvNjveBlULOycUppjcfwKo6I0PdI3TtenXDYtPjt3uc6E4HL2yxzV+ryrg9Gk5iJTsnzlMc9Lahnpsk8RJkYxEDF5qZ9k/paF4paXqFgiBlP0Tm76PBaskBO1VomRN2/r5YaYzpawlAKkN6/dKrRM8ESVAkqQ0C3PEi6Ce/H2Y7caLZlPfrdUjrjGTHqHdmdqQaq8k+9QonVWboEN2P7rXy1zToXA9ck+a7nj9QHiOSv3YHX4lQmkY3vuvZY/5uRPy6YnK3ekO4R8hrBvJfGJ1diJagJbss5O8ScM7rOQMk4riFgBtZM0zdmOHxfX09rzx0+LGzCuaQFx0452q7ZeEXLY2GzVkOwTQ0JdCfVSzUMFNPULCJnLqVBZF2BmC1T90BQ7UkdaVYUK0M80cFJ1WUV1X/lA1eRNsSqVD6+a2zH+5Q8St5/qE+rlwREqUh24naTc7zJgfi5wjP39x3JneZHa/b0Px+Xulf2iwHnu/bAnpYLmZ3f2rTqw5zQYDAaDwaAD/wANKir9WY4qAQAAAABJRU5ErkJggg=='}" class="w-10 h-10 rounded-full border border-white">
+                    </a>
+                    <button id="logoutButton" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">تسجيل الخروج</button>
+                </div>
+            `;
+
+            // حدث زر تسجيل الخروج
+            document.getElementById("logoutButton").addEventListener("click", function () {
+                localStorage.removeItem("user"); // إزالة بيانات المستخدم
+                location.reload(); // تحديث الصفحة لإعادة إظهار زر تسجيل الدخول
+            });
+        }
+    });
             const activities = [
                     {
                         id: 1,
@@ -573,6 +598,7 @@
 
                 // Initial display
                 displayActivities(activities);
+                
 </script>
     
 </body>
