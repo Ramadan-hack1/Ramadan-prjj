@@ -274,10 +274,10 @@
     
         <!-- Navigation Links -->
         <div class="hidden md:flex items-center justify-center space-x-8">
-            <a href="/index.html" class="text-white hover:text-custom-blue transition">الرئيسية</a>
-            <a href="/Events/events.html" class="text-white hover:text-custom-blue transition">الخدمات</a>
-            <a href="/AboutUs/about.html" class="text-white hover:text-custom-blue transition">عن الموقع</a>
-            <a href="/ContactUs/contact.html" class="text-white hover:text-custom-blue transition">من نحن</a>
+        <a href="/index.html" class="text-white hover:text-custom-blue transition">الرئيسية</a>
+        <a href="/events.html" class="text-white hover:text-custom-blue transition">الخدمات</a>
+        <a href="/about.html" class="text-white hover:text-custom-blue transition">عن الموقع</a>
+        <a href="/contact.html" class="text-white hover:text-custom-blue transition">من نحن</a>
         </div>
     
         <!-- Right Menu -->
@@ -305,7 +305,7 @@
             
             <!-- عناصر تسجيل الدخول/ملف المستخدم -->
             <div id="authButtons">
-                <a href="/Register/register.html" class="px-4 py-2 bg-custom-blue rounded-lg hover:bg-opacity-80 transition">تسجيل الدخول</a>
+                <a href="/register.html" class="px-4 py-2 bg-custom-blue rounded-lg hover:bg-opacity-80 transition">تسجيل الدخول</a>
             </div>
         </div>
     </nav>
@@ -353,7 +353,7 @@
         ];
 
         // Try to fetch events.json, fallback to sample data if it fails
-        fetch('../events.json')
+        fetch('events.json')
             .then(response => response.json())
             .then(events => {
                 allEvents = events;
@@ -374,7 +374,7 @@
             }
 
             eventContainer.innerHTML = events.map(event => `
-            <a href="../DetailsPage/details.html">
+            <a href="/details.html">
                 <div class="event-card">
                     <img src="${event.image}" alt="${event.title}">
                     <div class="event-details">
