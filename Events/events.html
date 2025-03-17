@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Events</title>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#3674B5',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        nav{
+            color: #f5f4f4;
+        }
+         @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .category-icon {
+            transition: all 0.3s ease;
+        }
+        .category-icon:hover {
+            transform: translateY(-5px);
+        }
+        .active-category {
+            color: #3674B5;
+            border-color: #3674B5;
+        }
+                @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @font-face {
+            font-family: 'TheSansArabic';
+            src: url('path-to-font/TheSansArabic-Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #ffffff;
+            color: #fff;
+        }
+
+        .arabic-title {
+            font-family: 'TheSansArabic', 'Tajawal', sans-serif;
+        }
+
+        .video-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 80px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSIxMDAiIHZpZXdCb3g9IjAgMCA4MCAxMDAiPjxwYXRoIGZpbGw9IiMzNjc0QjUiIGQ9Ik0wLDAgTDgwLDAgTDgwLDEwMCBMMCwxMDAgWiIvPjwvc3ZnPg==');
+            background-repeat: repeat-y;
+            z-index: 10;
+        }
+
+        .explore-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background-color: rgba(54, 116, 181, 0.3);
+            border-color: #3674B5;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #000;
+        }
+
+        header {
+            background-color: #3674B5;
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        /* 🔹 Search Bar & Filter Section */
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 30px auto;
+            max-width: 700px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        input,
+        select {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 45%;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #3674B5;
+            box-shadow: 0 0 0 2px rgba(54, 116, 181, 0.2);
+        }
+
+        /* 🔹 Event Container */
+        .event-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 🔹 Event Card */
+        .event-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .event-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card h3 {
+            margin: 0 0 12px 0;
+            color: #000;
+            font-size: 1.3rem;
+        }
+
+        .event-card p {
+            margin: 8px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        .event-location svg {
+            margin-left: 5px;
+            color: #3674B5;
+        }
+
+        .price-tag {
+            background-color: #3674B5;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* No results message */
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                padding: 15px 10px;
+            }
+
+            input,
+            select {
+                width: 90%;
+            }
+
+            .event-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-black bg-opacity-80">
+        <!-- Logo -->
+        <a href="#" class="relative z-10">
+            <img src="/api/placeholder/120/40" alt="Saudi Logo" class="h-10">
+        </a>
+    
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center justify-center space-x-8">
+            <a href="/index.html" class="text-white hover:text-custom-blue transition">الرئيسية</a>
+            <a href="/Events/events.html" class="text-white hover:text-custom-blue transition">الخدمات</a>
+            <a href="/AboutUs/about.html" class="text-white hover:text-custom-blue transition">عن الموقع</a>
+            <a href="/ContactUs/contact.html" class="text-white hover:text-custom-blue transition">من نحن</a>
+        </div>
+    
+        <!-- Right Menu -->
+        <div class="flex items-center space-x-4">
+            <button class="p-2 rounded-full bg-transparent hover:bg-custom-blue transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+            <button class="p-2 rounded-full bg-transparent hover:bg-custom-blue transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+            </button>
+            <div class="flex items-center border border-white rounded-full px-3 py-1 hover:border-custom-blue hover:text-custom-blue transition">
+                <span>AR</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9h18" />
+                </svg>
+            </div>
+            <a href="#" class="px-4 py-2 rounded-lg border border-white hover:border-custom-blue hover:text-custom-blue transition">طلب التأشيرة</a>
+            
+            <!-- عناصر تسجيل الدخول/ملف المستخدم -->
+            <div id="authButtons">
+                <a href="/Register/register.html" class="px-4 py-2 bg-custom-blue rounded-lg hover:bg-opacity-80 transition">تسجيل الدخول</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🔹 Search Bar & Price Filter -->
+    <div class="controls">
+        <input type="text" id="search-bar" placeholder="البحث عن فعاليات...">
+        <select id="price-filter">
+            <option value="all">كل الأسعار</option>
+            <option value="10">اقل من $10</option>
+            <option value="20">اقل من $20</option>
+            <option value="50">اقل من $50</option>
+        </select>
+    </div>
+
+    <!-- 🔹 Events Container -->
+    <div class="event-container" id="events-list"></div>
+
+    <script>
+        let allEvents = [];
+
+        // Sample events data since we don't have the actual JSON file
+        const sampleEvents = [
+            {
+                title: "معرض الفنون التشكيلية",
+                desc: "استمتع بمشاهدة أعمال فنية من مختلف أنحاء العالم",
+                location: "متحف الفنون المركزي",
+                price: "$15",
+                image: "/api/placeholder/400/320"
+            },
+            {
+                title: "حفل موسيقي",
+                desc: "أمسية موسيقية مميزة مع نخبة من الموسيقيين",
+                location: "دار الأوبرا",
+                price: "$25",
+                image: "/api/placeholder/400/320"
+            },
+            {
+                title: "ورشة عمل للتصوير",
+                desc: "تعلم أساسيات التصوير الفوتوغرافي مع محترفين",
+                location: "مركز الإبداع الفني",
+                price: "$8",
+                image: "/api/placeholder/400/320"
+            }
+        ];
+
+        // Try to fetch events.json, fallback to sample data if it fails
+        fetch('../events.json')
+            .then(response => response.json())
+            .then(events => {
+                allEvents = events;
+                displayEvents(events);
+            })
+            .catch(error => {
+                console.error("Error fetching events, using sample data:", error);
+                allEvents = sampleEvents;
+                displayEvents(sampleEvents);
+            });
+
+        function displayEvents(events) {
+            let eventContainer = document.getElementById("events-list");
+
+            if (events.length === 0) {
+                eventContainer.innerHTML = `<div class="no-results">لا توجد فعاليات تطابق معايير البحث</div>`;
+                return;
+            }
+
+            eventContainer.innerHTML = events.map(event => `
+            <a href="../DetailsPage/details.html">
+                <div class="event-card">
+                    <img src="${event.image}" alt="${event.title}">
+                    <div class="event-details">
+                        <h3>${event.title}</h3>
+                        <p>${event.desc}</p>
+                        <div class="event-location">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>${event.location}</span>
+                        </div>
+                        <div class="price-tag">${event.price}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 🔹 Search Functionality
+        document.getElementById("search-bar").addEventListener("input", function () {
+            filterEvents();
+        });
+
+        // 🔹 Price Filter Functionality
+        document.getElementById("price-filter").addEventListener("change", function () {
+            filterEvents();
+        });
+
+        function filterEvents() {
+            let searchQuery = document.getElementById("search-bar").value.toLowerCase();
+            let priceFilter = document.getElementById("price-filter").value;
+
+            let filteredEvents = allEvents.filter(event => {
+                let matchesSearch = event.title.toLowerCase().includes(searchQuery) ||
+                    event.desc.toLowerCase().includes(searchQuery) ||
+                    event.location.toLowerCase().includes(searchQuery);
+
+                let matchesPrice = true;
+                if (priceFilter !== "all") {
+                    const eventPrice = parseInt(event.price.replace('$', ''));
+                    matchesPrice = !isNaN(eventPrice) && eventPrice <= parseInt(priceFilter);
+                }
+
+                return matchesSearch && matchesPrice;
+            });
+
+            displayEvents(filteredEvents);
+        }
+    </script>
+
+</body>
+
+</html>
