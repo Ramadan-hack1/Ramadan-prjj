@@ -267,7 +267,7 @@ signupForm.addEventListener('submit', (e) => {
     localStorage.setItem('user', JSON.stringify(user));
     showToast("تم إنشاء الحساب بنجاح!");
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "../index.html";
     }, 2000);
   }
 });
@@ -304,8 +304,8 @@ signinForm.addEventListener('submit', (e) => {
     if (user && user.email === email && user.password === password) {
       showToast("تم تسجيل الدخول بنجاح!");
       setTimeout(() => {
-        window.location.href = "/";
-      }, 2000);
+        window.location.href = "../index.html";
+    }, 2000);
     } else {
       showToast("البريد الإلكتروني أو كلمة المرور غير صحيحة.", false);
     }
