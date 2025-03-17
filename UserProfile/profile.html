@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إعدادات الحساب</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1E3A8A; /* لون أزرق غامق أنيق */
+      --secondary: #F1F5F9; /* خلفية فاتحة */
+      --accent: #10B981; /* أخضر للعناصر المؤكدة */
+      --text: #1F2937; /* نص غامق */
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif; /* خط عربي أنيق */
+      background-color: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .input-field {
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      transition: border-color 0.2s ease;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #1E40AF;
+    }
+
+    .profile-card {
+      background: linear-gradient(135deg, var(--primary) 0%, #3B82F6 100%);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .active-tab {
+      border-bottom: 4px solid var(--primary);
+      color: var(--primary);
+      font-weight: 700;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container mx-auto px-4 py-10 max-w-6xl">
+    <!-- العنوان وزر تسجيل الخروج -->
+    <div class="flex justify-between items-center mb-10">
+      <h1 class="text-3xl font-bold text-primary">إعدادات الحساب</h1>
+      <button class="text-primary font-medium hover:underline flex items-center">
+        <span class="ml-1">تسجيل الخروج</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+              <!-- القسم الجانبي -->
+      <div class="w-full lg:w-1/3">
+        <!-- بطاقة الملف الشخصي -->
+        <div class="profile-card p-6 text-white">
+          <div class="flex flex-col items-center">
+            <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center mb-4">
+              <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Alaa Saadi</h3>
+            <p class="text-sm opacity-90">alaa.saadi95@gmail.com</p>
+            <!-- <div class="bg-white text-gray-800 p-4 rounded-lg mt-4 w-full text-center">
+              <p class="font-bold">الهوية الرقمية السعودية</p>
+              <div class="w-24 h-24 bg-gray-200 mx-auto mt-2 rounded"></div>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- القائمة الجانبية -->
+        <div class="sidebar mt-6">
+          <div class="p-4 border-b">
+            <h2 class="text-lg font-bold text-primary">القائمة</h2>
+          </div>
+          <ul>
+            <li class="border-b">
+              <a href="#" class="block p-4 hover:bg-gray-50 flex justify-between items-center">
+                <span>حجوزاتي</span>
+                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="block p-4 hover:bg-gray-50 flex justify-between items-center">
+                <span>اهتماماتي</span>
+                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- القسم الرئيسي -->
+      <div class="w-full lg:w-2/3">
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <!-- التبويبات -->
+          <div class="border-b border-gray-200 mb-6">
+            <div class="flex space-x-6">
+              <div class="pb-3 px-2 active-tab cursor-pointer">المعلومات الشخصية</div>
+              <div class="pb-3 px-2 text-gray-500 cursor-pointer hover:text-primary">كلمة المرور</div>
+            </div>
+          </div>
+
+          <!-- النموذج -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block mb-2 font-medium">الاسم الأول</label>
+              <input type="text" class="input-field" value="alaa" />
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">اسم العائلة</label>
+              <input type="text" class="input-field" value="saadi" />
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">الجنس</label>
+              <select class="input-field appearance-none">
+                <option>اختر الجنس</option>
+                <option>ذكر</option>
+                <option>أنثى</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">تاريخ الميلاد</label>
+              <input type="date" class="input-field" />
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">
+                رقم الجوال <span class="text-gray-400 text-sm">(غير مؤكد)</span>
+              </label>
+              <div class="flex gap-2">
+                <input type="text" class="input-field w-2/3" placeholder="رقم الجوال" />
+                <input type="text" class="input-field w-1/3" placeholder="مفتاح الدولة" />
+                
+              </div>
+              <button class="mt-2 text-primary text-sm hover:underline">تعديل رقم الجوال</button>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">
+                البريد الإلكتروني <span class="text-green-600 text-sm">(تم التحقق)</span>
+              </label>
+              <input type="email" class="input-field bg-gray-100" value="alaa.saadi95@gmail.com" disabled />
+            </div>
+            <div class="md:col-span-2">
+              <label class="flex items-center">
+                <input type="checkbox" class="h-5 w-5 text-primary rounded border-gray-300" checked />
+                <span class="mr-2">أود أن أستلم العروض والترويجات</span>
+              </label>
+            </div>
+            <div class="md:col-span-2">
+              <button class="btn-primary">تحديث المعلومات</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
