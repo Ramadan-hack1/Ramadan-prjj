@@ -7,14 +7,14 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     :root {
-      --primary: #1E3A8A; /* لون أزرق غامق أنيق */
-      --secondary: #F1F5F9; /* خلفية فاتحة */
-      --accent: #10B981; /* أخضر للعناصر المؤكدة */
-      --text: #1F2937; /* نص غامق */
+      --primary: #1E3A8A;
+      --secondary: #F1F5F9;
+      --accent: #10B981;
+      --text: #1F2937;
     }
 
     body {
-      font-family: 'Cairo', sans-serif; /* خط عربي أنيق */
+      font-family: 'Cairo', sans-serif;
       background-color: var(--secondary);
       color: var(--text);
       line-height: 1.6;
@@ -80,7 +80,7 @@
     </div>
 
     <div class="flex flex-col lg:flex-row gap-8">
-              <!-- القسم الجانبي -->
+      <!-- القسم الجانبي -->
       <div class="w-full lg:w-1/3">
         <!-- بطاقة الملف الشخصي -->
         <div class="profile-card p-6 text-white">
@@ -92,10 +92,6 @@
             </div>
             <h3 class="text-xl font-bold">Alaa Saadi</h3>
             <p class="text-sm opacity-90">alaa.saadi95@gmail.com</p>
-            <!-- <div class="bg-white text-gray-800 p-4 rounded-lg mt-4 w-full text-center">
-              <p class="font-bold">الهوية الرقمية السعودية</p>
-              <div class="w-24 h-24 bg-gray-200 mx-auto mt-2 rounded"></div>
-            </div> -->
           </div>
         </div>
 
@@ -124,6 +120,7 @@
           </ul>
         </div>
       </div>
+
       <!-- القسم الرئيسي -->
       <div class="w-full lg:w-2/3">
         <div class="bg-white p-6 rounded-xl shadow-sm">
@@ -139,15 +136,15 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label class="block mb-2 font-medium">الاسم الأول</label>
-              <input type="text" class="input-field" value="alaa" />
+              <input type="text" id="firstName" class="input-field" value="alaa" />
             </div>
             <div>
               <label class="block mb-2 font-medium">اسم العائلة</label>
-              <input type="text" class="input-field" value="saadi" />
+              <input type="text" id="lastName" class="input-field" value="saadi" />
             </div>
             <div>
               <label class="block mb-2 font-medium">الجنس</label>
-              <select class="input-field appearance-none">
+              <select id="gender" class="input-field appearance-none">
                 <option>اختر الجنس</option>
                 <option>ذكر</option>
                 <option>أنثى</option>
@@ -155,16 +152,15 @@
             </div>
             <div>
               <label class="block mb-2 font-medium">تاريخ الميلاد</label>
-              <input type="date" class="input-field" />
+              <input type="date" id="birthDate" class="input-field" />
             </div>
             <div>
               <label class="block mb-2 font-medium">
                 رقم الجوال <span class="text-gray-400 text-sm">(غير مؤكد)</span>
               </label>
               <div class="flex gap-2">
-                <input type="text" class="input-field w-2/3" placeholder="رقم الجوال" />
-                <input type="text" class="input-field w-1/3" placeholder="مفتاح الدولة" />
-                
+                <input type="text" id="phoneNumber" class="input-field w-2/3" placeholder="رقم الجوال" />
+                <input type="text" id="countryCode" class="input-field w-1/3" placeholder="مفتاح الدولة" />
               </div>
               <button class="mt-2 text-primary text-sm hover:underline">تعديل رقم الجوال</button>
             </div>
@@ -172,23 +168,24 @@
               <label class="block mb-2 font-medium">
                 البريد الإلكتروني <span class="text-green-600 text-sm">(تم التحقق)</span>
               </label>
-              <input type="email" class="input-field bg-gray-100" value="alaa.saadi95@gmail.com" disabled />
+              <input type="email" id="email" class="input-field bg-gray-100" value="alaa.saadi95@gmail.com" disabled />
             </div>
             <div class="md:col-span-2">
               <label class="flex items-center">
-                <input type="checkbox" class="h-5 w-5 text-primary rounded border-gray-300" checked />
+                <input type="checkbox" id="receiveOffers" class="h-5 w-5 text-primary rounded border-gray-300" checked />
                 <span class="mr-2">أود أن أستلم العروض والترويجات</span>
               </label>
             </div>
             <div class="md:col-span-2">
-              <button class="btn-primary">تحديث المعلومات</button>
+              <button id="updateButton" class="btn-primary">تحديث المعلومات</button>
             </div>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
+
+  <!-- رابط ملف JavaScript -->
+  <!-- <script type="module" src="profile.js"></script> -->
 </body>
 </html>
